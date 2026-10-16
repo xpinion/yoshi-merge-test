@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yoshi xcx's Videogame Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header id="global-header"></header>
+  <main class="dashboard-container">
+    <!-- Always visible: key numbers and what's being played now -->
+    <section class="card-row grid-1" id="index-glance"></section>
+    <section class="card-row grid-1" id="index-highlight"></section>
+    <section class="card-row grid-1">
+      <div class="card">
+        <div class="card-header"><h2>Now Playing</h2></div>
+        <div class="card-content" id="now-playing-list"></div>
+      </div>
+    </section>
+
+    <nav class="index-tabs" aria-label="Index sections">
+      <button type="button" data-tab="overview">Overview</button>
+      <button type="button" data-tab="rankings">Rankings</button>
+      <button type="button" data-tab="scores">Scores</button>
+      <button type="button" data-tab="breakdowns">Breakdowns</button>
+      <button type="button" data-tab="history">History</button>
+      <button type="button" data-tab="spotlight">Spotlight</button>
+    </nav>
+
+    
+    <section data-tab="overview" class="card-row grid-2">
+      <div class="card">
+        <div class="card-header"><h2>Year Pace</h2></div>
+        <div class="card-content" id="year-pace-content"></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h2>Recent Records</h2></div>
+        <div class="card-content" id="recent-records-list"></div>
+      </div>
+    </section>
+
+    <section data-tab="overview" id="section-summary" class="card-row grid-1">
+      <div class="card">
+        <div class="card-header">
+          <h2>Monthly Summary: <select id="month-select" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="monthly-summary-list">
+          <div class="loading-text">Loading Data...</div>
+        </div>
+      </div>
+    </section>
+
+    <section data-tab="rankings" id="section-rankings" class="card-row grid-4">
+      <div class="card">
+        <div class="card-header">
+          <h2><select id="year-select-comp" class="header-dropdown"></select> Completions</h2>
+        </div>
+        <div class="card-content" id="completions-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Most Played <select id="year-select-played" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="most-played-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Most Days Played <select id="year-select-days" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="most-days-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Longest Single Session <select id="year-select-session" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="longest-session-list"></div>
+      </div>
+    </section>
+
+    <section data-tab="scores" class="card-row grid-3">
+      <div class="card">
+        <div class="card-header">
+          <h2><select id="top100-year-select" class="header-dropdown"></select> Top 100 Scores</h2>
+        </div>
+        <div class="card-content" id="top100-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Franchise: <select id="franchise-select" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="franchise-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Genre: <select id="genre-select" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="genre-list"></div>
+      </div>
+    </section>
+
+    <section data-tab="breakdowns" id="section-metrics" class="card-row grid-3">
+      <div class="card">
+        <div class="card-header">
+          <h2>Most Played Systems <select id="year-select-metrics" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="most-played-systems-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Most Played Franchises <select id="year-select-metrics-2" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="most-played-franchises-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Most Played Genres <select id="year-select-metrics-3" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="most-played-genres-list"></div>
+      </div>
+    </section>
+
+    <section data-tab="history" class="card-row grid-2">
+      <div class="card">
+        <div class="card-header">
+          <h2>On This Day in History (<span id="today-date"></span>)</h2>
+        </div>
+        <div class="card-content" id="on-this-day-list"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Milestone Tracker</h2>
+        </div>
+        <div class="card-content" id="milestones-list"></div>
+      </div>
+    </section>
+
+    <section data-tab="spotlight" class="card-row grid-1">
+      <div class="card">
+        <div class="card-header">
+          <h2>Spotlight: <select id="random-top25-select" class="header-dropdown"></select></h2>
+        </div>
+        <div class="card-content" id="random-top25-content" style="padding: 0;"></div>
+      </div>
+    </section>
+
+    <section data-tab="breakdowns" class="card-row grid-1">
+      <div class="card">
+        <div class="card-header">
+          <h2>Data Analysis: 
+            <select id="analysis-select" class="header-dropdown">
+              <option value="playthrough">Playthrough Stats</option>
+              <option value="dayOfWeek">Day of Week Stats</option>
+              <option value="genre">Genre Stats</option>
+              <option value="releaseYear">Release Year Stats</option>
+              <option value="developer">Developer Stats</option>
+              <option value="publisher">Publisher Stats</option>
+            </select>
+          </h2>
+        </div>
+        <div class="card-content" id="analysis-content" style="padding: 0;"></div>
+      </div>
+    </section>
+    
+    <section data-tab="breakdowns" id="section-heatmaps" class="card-row grid-1">
+      <div class="card">
+        <div class="card-header">
+          <h2>Metrics & Heatmaps: 
+            <select id="heatmap-select" class="header-dropdown">
+              <option value="gameSummary" selected>Table: Game Timeframe Summary</option>
+              <option value="genreSummary">Table: Genre Timeframe Summary</option>
+              <option value="gotySummary">Table: Game of the Year (Scores)</option>
+              <option value="days">Heatmap: Days Played</option>
+              <option value="time">Heatmap: Total Time Spent</option>
+            </select>
+          </h2>
+        </div>
+        <div class="card-content" id="heatmap-content" style="overflow-x: auto; padding: 0;"></div>
+      </div>
+    </section>
+    
+    <section data-tab="history" id="section-archives" class="card-row grid-1">
+      <div class="card">
+        <div class="card-header">
+          <h2>Full Game Archive: 
+            <input type="text" id="game-search" list="game-datalist" class="header-dropdown search-input" placeholder="Type to search games...">
+            <datalist id="game-datalist"></datalist>
+          </h2>
+        </div>
+        <div class="card-content" id="game-history-content" style="padding: 0;"></div>
+      </div>
+    </section>
+
+    <section data-tab="history" class="card-row grid-1">
+      <div class="card">
+        <div class="card-header">
+          <h2>Series Archive: 
+            <input type="text" id="series-search" list="series-datalist" class="header-dropdown search-input" placeholder="Type to search series...">
+            <datalist id="series-datalist"></datalist>
+          </h2>
+        </div>
+        <div class="card-content" id="series-archive-content" style="padding: 0;"></div>
+      </div>
+    </section>
+
+    <div id="game-tooltip" class="game-tooltip"></div>
+  </main>
+
+  <script src="js/core.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/timeframe.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/spotlight.js"></script>
+  <script src="js/metrics.js"></script>
+  <script src="js/analysis.js"></script>
+  <script src="js/history.js"></script>
+</body>
+</html>
