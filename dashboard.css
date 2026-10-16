@@ -1603,5 +1603,7 @@ body.dark-theme .viz-root {
 .viz-tip div span { color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 /* TEST PREVIEW ONLY: the merged 2006-2026 log */
-body::before { content: "TEST PREVIEW \2014  merged 2006\2013 2026 log. Not the live site (yoshi.gg)."; display: block; text-align: center;
-  padding: 6px 12px; font: 600 13px/1.4 system-ui, sans-serif; background: #b3261e; color: #fff; }
+body::after { content: "TEST PREVIEW \2014  merged 2006\2013 2026 log. Not the live site (yoshi.gg)."; position: fixed; left: 0; right: 0; bottom: 0;
+  z-index: 2147483647; text-align: center; padding: 6px 12px; font: 600 13px/1.4 system-ui, sans-serif; background: #b3261e; color: #fff;
+  pointer-events: none; }
+body { padding-bottom: 60px; }
